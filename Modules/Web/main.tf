@@ -13,11 +13,17 @@ resource "azurerm_storage_account" "sa-web" {
   account_replication_type = var.storage-account-type
 }
 
+resource "azurerm_storage_container" "sc-web" {
+  name                  = "sc${var.base-name}"
+  storage_account_name  = azurerm_storage_account.sa-backend.name
+  container_access_type = "private"
+}
+
 # Add a blob storage for images to the storage account
 resource "azurerm_storage_blob" "product-img" {
   name                   = "blob-${var.base-name}-img"
   storage_account_name   = azurerm_storage_account.sa-web.name
-  storage_container_name = "$web"
+  storage_container_name = azurerm_storage_container.sc-web.name
   type                   = "Block"
 }
 
