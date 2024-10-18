@@ -1,20 +1,3 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source = "hashicorp/azurerm"
-      version = "4.0.1"
-    }
-  }
-
-  backend "azurerm" {
-    resource_group_name  = "rg-sim-back"
-    storage_account_name = "sasim0ai1uobicgback"
-    container_name       = "scsimback"
-    key                  = "backend.terraform.tfstate"
-}
-
-}
-
 data "azurerm_client_config" "current" {}
 
 provider "azurerm" {
@@ -27,7 +10,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rg-backend" {
-  name     = "rg-${var.base-name}-back"
+  name     = "rg-${var.base-name}-back-${var.workspace-suffix}"
   location = var.location
 }
 
@@ -39,7 +22,7 @@ resource "random_string" "random" {
 }
 
 resource "azurerm_storage_account" "sa-backend" {
-  name                     = "sa${lower(var.base-name)}${random_string.random.result}back"
+  name                     = "sa${lower(var.base-name)}${random_string.random.result}back${var.workspace-suffix}"
   resource_group_name      = azurerm_resource_group.rg-backend.name
   location                 = azurerm_resource_group.rg-backend.location
   account_tier             = var.storage-account-tier
