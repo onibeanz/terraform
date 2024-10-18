@@ -24,7 +24,6 @@ provider "azurerm" {
         recover_soft_deleted_key_vaults = true
       }
     }
-
 }
 
 resource "azurerm_resource_group" "rg-backend" {
