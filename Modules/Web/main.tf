@@ -1,7 +1,3 @@
-locals {
-  web_suffix = "<h1>${terraform.workspace}</h1>"
-}
-
 resource "random_string" "random" {
   length  = 8
   special = false
@@ -15,18 +11,21 @@ resource "azurerm_storage_account" "sa-web" {
   location                 = var.location
   account_tier             = var.storage-account-tier
   account_replication_type = var.storage-account-type
-
-  static_website {
-    index_document = var.index_document
-  }
 }
 
-# Add a index.html file to the storage account
-resource "azurerm_storage_blob" "index-html" {
-  name                   = var.index_document
+# Add a blob storage for images to the storage account
+resource "azurerm_storage_blob" "product-img" {
+  name                   = "blob-${var.base-name}-img"
   storage_account_name   = azurerm_storage_account.sa-web.name
   storage_container_name = "$web"
   type                   = "Block"
-  content_type           = "text/html"
-  source_content         = "${var.source_content}${local.web_suffix}"
+}
+
+# Create a service plan for the app to run on.
+resource "azurerm_service_plan" "sp" {
+  name                = "sp${var.base-name}"
+  resource_group_name = var.rg-name
+  location            = var.location
+  os_type             = "Linux"
+  sku_name            = "P1v2"
 }

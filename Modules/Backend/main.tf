@@ -76,3 +76,16 @@ resource "azurerm_key_vault_secret" "sa_backend_accesskey" {
   value        = azurerm_storage_account.sa-backend.primary_access_key
   key_vault_id = azurerm_key_vault.kv-backend.id
 }
+
+resource "random_password" "rpass" {
+  length           = 16
+  special          = true
+  override_special = "!@#$%&*()-_=+[]{}|;:,.<>"
+  
+}
+
+resource "azurerm_key_vault_secret" "secret-password" {
+  name         = "password"
+  value        = random_password.rpass.result
+  key_vault_id = azurerm_key_vault.kv-backend.id
+}

@@ -21,7 +21,23 @@ module "Web" {
   storage-account-type = var.storage-account-type
   location = module.Backend.rg-location
   rg-name = module.Backend.rg-name
-  }
+}
+
+module "Network" {
+  source = "../Modules/Network"
+  base-name = var.base-name
+  location = module.Backend.rg-location
+  rg-name = module.Backend.rg-name
+}
+
+module "Database" {
+  source = "../Modules/Database"
+  base-name = var.base-name
+  workspace-suffix = local.workspace-suffix
+  location = module.Backend.rg-location
+  rg-name = module.Backend.rg-name
+  admin-password = module.Backend.secret-password
+}
 
 output "primary_web_endpoint" {
   value = module.Web.primary_web_endpoint
