@@ -29,7 +29,7 @@ variable "storage-account-type" {
   type = string
   description = "Storage Account Type"
 }
-
+/*
 variable "index_document" {
   type        = string
   description = "Name of the index document"
@@ -40,4 +40,4 @@ variable "source_content" {
   type        = string
   description = "Source content for the index.html file"
   default     = "<h1>OperaTerra E-Commerce</h1>"
-}
+}*/

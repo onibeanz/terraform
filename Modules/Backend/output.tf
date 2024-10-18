@@ -20,6 +20,10 @@ output "rg-name" {
   
 }
 
+output "secret-password" {
+  value     = azurerm_key_vault_secret.secret-password.value
+}
+
 /*
 output "key-vault-id" {
   value = azurerm_key_vault.kv-backend.id
