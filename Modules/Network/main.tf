@@ -6,8 +6,8 @@ provider "azurerm" {
 
 resource "azurerm_public_ip" "ip" {
   name                = "lbip-${var.base-name}"
-  location            = azurerm_resource_group.example.location
-  resource_group_name = azurerm_resource_group.example.name
+  location            = var.location
+  resource_group_name = var.rg-name
   allocation_method   = "Static"
 }
 
