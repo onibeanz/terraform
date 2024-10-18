@@ -16,7 +16,7 @@ resource "azurerm_resource_group" "rg-backend" {
 
 
 resource "random_string" "random" {
-  length  = 10
+  length  = 8
   special = false
   upper = false
 }

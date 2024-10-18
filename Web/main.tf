@@ -2,7 +2,7 @@ locals {
   web_suffix = "<h1>${terraform.workspace}</h1>"
 }
 
-resource "random_string" "random-string" {
+resource "random_string" "random" {
   length  = 8
   special = false
   upper   = false
@@ -10,7 +10,7 @@ resource "random_string" "random-string" {
 
 # Create Storage Account
 resource "azurerm_storage_account" "sa-web" {
-  name                     = "sa${lower(var.base-name)}${random-string.random.result}web${var.workspace-suffix}"
+  name                     = "sa${lower(var.base-name)}${random_string.random.result}web${var.workspace-suffix}"
   resource_group_name      = var.rg-name
   location                 = var.location
   account_tier             = var.storage-account-tier
