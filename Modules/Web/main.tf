@@ -6,7 +6,7 @@ resource "random_string" "random" {
 
 # Create Storage Account
 resource "azurerm_storage_account" "sa-web" {
-  name                     = "sa${lower(var.base-name)}${random_string.random.result}web${var.workspace-suffix}"
+  name                     = "sa${lower(var.base-name)}${var.random-string}web${var.workspace-suffix}"
   resource_group_name      = var.rg-name
   location                 = var.location
   account_tier             = var.storage-account-tier

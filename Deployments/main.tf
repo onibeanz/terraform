@@ -5,9 +5,16 @@ locals {
   base-name-and-suffix = "${var.base-name}-${local.workspace-suffix}"
 }
 
+resource "random_string" "random" {
+  length  = 8
+  special = false
+  upper = false
+}
+
 module "Backend" {
   source = "../Modules/Backend"
   base-name = var.base-name
+  random-string = random_string.random.result
   workspace-suffix = local.workspace-suffix
   storage-account-tier = var.storage-account-tier
   storage-account-type = var.storage-account-type
@@ -17,6 +24,7 @@ module "Web" {
   source = "../Modules/Web"
   base-name = var.base-name
   workspace-suffix = local.workspace-suffix
+  random-string = random_string.random.result
   storage-account-tier = var.storage-account-tier
   storage-account-type = var.storage-account-type
   location = module.Backend.rg-location
@@ -34,6 +42,7 @@ module "Database" {
   source = "../Modules/Database"
   base-name = var.base-name
   workspace-suffix = local.workspace-suffix
+  random-string = random_string.random.result
   location = module.Backend.rg-location
   rg-name = module.Backend.rg-name
   admin-password = module.Backend.secret-password

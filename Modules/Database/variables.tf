@@ -8,6 +8,11 @@ variable "workspace-suffix" {
   description = "workspace suffix"
 }
 
+variable "random-string" {
+  type = string
+  description = "random string"
+}
+
 variable "location" {
   type = string
   description = "Deployment Location"

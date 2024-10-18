@@ -15,14 +15,8 @@ resource "azurerm_resource_group" "rg-backend" {
 }
 
 
-resource "random_string" "random" {
-  length  = 8
-  special = false
-  upper = false
-}
-
 resource "azurerm_storage_account" "sa-backend" {
-  name                     = "sa${lower(var.base-name)}${random_string.random.result}back${var.workspace-suffix}"
+  name                     = "sa${lower(var.base-name)}${var.random-string}back${var.workspace-suffix}"
   resource_group_name      = azurerm_resource_group.rg-backend.name
   location                 = azurerm_resource_group.rg-backend.location
   account_tier             = var.storage-account-tier

@@ -1,5 +1,5 @@
 resource "azurerm_mssql_server" "sqlserver" {
-  name                         = "sqlserver-${lower(var.base-name)}"
+  name                         = "sqlsrv-${lower(var.base-name)}-${var.random-string}"
   resource_group_name          = var.rg-name
   location                     = var.location
   version                      = "12.0"

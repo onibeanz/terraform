@@ -9,7 +9,7 @@ variable "location" {
 variable "base-name" {
   type        = string
   description = "Base Name"
-  default = "jello" 
+  default = "mochi" 
 }
 
 # Specifies the tier of the storage account.
