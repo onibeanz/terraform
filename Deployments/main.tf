@@ -1,12 +1,12 @@
 // Module values are set dynamically, refer to terraform.tfvars for variable values
 
 locals {
-  workspace-suffix = terraform.workspace == "default" ? "dev" : terraform.workspace
+  workspace-suffix = terraform.workspace == "default" ? "" : terraform.workspace
   base-name-and-suffix = "${var.base-name}-${local.workspace-suffix}"
 }
 
 module "Backend" {
-  source = "./Backend"
+  source = "../Modules/Backend"
   base-name = var.base-name
   workspace-suffix = local.workspace-suffix
   storage-account-tier = var.storage-account-tier
@@ -14,7 +14,7 @@ module "Backend" {
 }
 
 module "Web" {
-  source = "./Web"
+  source = "../Modules/Web"
   base-name = var.base-name
   workspace-suffix = local.workspace-suffix
   storage-account-tier = var.storage-account-tier

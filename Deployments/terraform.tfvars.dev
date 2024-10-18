@@ -1,0 +1,7 @@
+// General Variables
+location = "West Europe"
+base-name = "sim"
+
+// Storage Account Variables
+storage-account-tier = "Standard"
+storage-account-type = "GRS"
