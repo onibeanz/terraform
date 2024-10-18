@@ -5,11 +5,11 @@ variable "location" {
   default     = "West Europe" # Default location is set to "West Europe"
 }
 
-# Specifies the base name for the resources.
+# Specifies the base name for the resources. Cannot be over 5 characters in length"
 variable "base-name" {
   type        = string
   description = "Base Name"
-  default = "alpaca" # Default base name is set to "alpaca"
+  default = "jello" 
 }
 
 # Specifies the tier of the storage account.
