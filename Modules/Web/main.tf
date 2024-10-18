@@ -15,7 +15,7 @@ resource "azurerm_storage_account" "sa-web" {
 
 resource "azurerm_storage_container" "sc-web" {
   name                  = "sc${var.base-name}"
-  storage_account_name  = azurerm_storage_account.sa-backend.name
+  storage_account_name  = azurerm_storage_account.sa-web.name
   container_access_type = "private"
 }
 
