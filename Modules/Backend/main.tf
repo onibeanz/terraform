@@ -30,7 +30,7 @@ resource "azurerm_storage_container" "sc-backend" {
 }
 
 resource "azurerm_key_vault" "kv-backend" {
-  name                        = "kv-${var.base-name}-${random_string.random.result}-back"
+  name                        = "kv-${var.base-name}-${var.random-string}-back"
   location                    = var.location
   resource_group_name         = azurerm_resource_group.rg-backend.name
   enabled_for_disk_encryption = true
