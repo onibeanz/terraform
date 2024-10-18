@@ -81,9 +81,9 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test prod
-        run: ping $(terraform output -raw public_ip) 
-        working-directory: ${{ env.WORKING_DIR }}
+     ## - name: Test prod
+        ##  run: ping $(terraform output -raw public_ip) 
+        ##  working-directory: ${{ env.WORKING_DIR }}           # Apparently "ping" doesn't work in GitHub Actions
 
       - name: Get Web Endpoint
         id: get_web_endpoint
