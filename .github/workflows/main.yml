@@ -32,9 +32,9 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test dev
-        run: nc $(terraform output -raw public_ip) 
-        working-directory: ${{ env.WORKING_DIR }}
+      ##- name: Test dev
+      ##  run: ping $(terraform output -raw public_ip) 
+      ##  working-directory: ${{ env.WORKING_DIR }}           # Apparently "ping" doesn't work in GitHub Actions
 
   stage_prod:
     needs: dev_stage
@@ -55,9 +55,9 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: ${{ env.WORKING_DIR }}
 
-      - name: Test stage
-        run: nc $(terraform output -raw public_ip) 
-        working-directory: ${{ env.WORKING_DIR }}
+      ##    - name: Test stage
+        ##  run: ping $(terraform output -raw public_ip) 
+        ##  working-directory: ${{ env.WORKING_DIR }}           # Apparently "ping" doesn't work in GitHub Actions
 
   prod:
     needs: stage_prod
