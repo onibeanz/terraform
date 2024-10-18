@@ -9,7 +9,7 @@ variable "location" {
 variable "base-name" {
   type        = string
   description = "Base Name"
-  default = "default" # Default base name is set to "default"
+  default = "alpaca" # Default base name is set to "alpaca"
 }
 
 # Specifies the tier of the storage account.
