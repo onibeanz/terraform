@@ -53,5 +53,5 @@ output "primary_web_endpoint" {
 }
 
 output "public_ip" {
-  value = module.Network.public_ip
+  value = module.Network.public-ip
 }
